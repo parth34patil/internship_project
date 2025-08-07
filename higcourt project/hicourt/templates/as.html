@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Case Details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <style>
+      /* Styles for the main container of the case details */
+      .case-details {
+        background: #f8f9fa; /* Light gray background */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        padding: 30px 40px; /* Internal spacing */
+        margin: 40px auto; /* Centers the container on the page */
+        width: 60%; /* Sets the width to 60% of the parent container */
+        font-family: "Segoe UI", Arial, sans-serif; /* Sets a clean font stack */
+      }
+      /* Styles for the main heading */
+      .case-details h1 {
+        color: #2c3e50; /* Dark blue-gray color */
+        margin-bottom: 25px; /* Spacing below the heading */
+      }
+      /* Styles for the paragraph text */
+      .case-details p {
+        font-size: 1.1em; /* Slightly larger font size */
+        color: #333; /* Dark gray text color */
+        margin: 10px 0; /* Vertical spacing between paragraphs */
+      }
+      /* Styles for the labels (the 'span' elements) */
+      .case-details p span {
+        font-weight: bold; /* Makes the labels bold */
+        color: #007bff; /* Bright blue color for emphasis */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="case-details">
+      <h1>Case Details</h1>
+      <p><span>Name:</span> {{ item.name }}</p>
+      <p><span>Case Number:</span> {{ item.case_number }}</p>
+      <p><span>Date:</span> {{ item.date }}</p>
+      <p><span>Status:</span> {{ item.case_status }}</p>
+      <p><span>Court Name:</span> {{ item.court_name }}</p>
+      <p><span>Judges:</span> {{ item.judges }}</p>
+      <p><span>Hearing Dates:</span> {{ item.hearing_dates }}</p>
+      <p><span>City:</span> {{ item.city }}</p>
+    </div>
+  </body>
+</html>

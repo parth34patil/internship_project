@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Case Search</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Case Search by Case Number</h2>
+
+      <img
+        src="{% static 'image.png' %}"
+        alt="Gujarat High Court"
+        class="center-img"
+      />
+
+      <p>Today's Date: {% now "d-m-Y" %}</p>
+      
+      <form action="{% url 'hicourt:result' %}" method="get" id="search-form">
+        {% csrf_token %}
+
+        <p>Court Complex</p>
+        <select name="court_complex" id="court-complex-select">
+          <option value="high-court">High Court</option>
+          <option value="district-court">District Court</option>
+          <option value="family-court">Family Court</option>
+        </select>
+
+        <p>Case Type</p>
+        <select name="case_type" id="case-type-select">
+          <option value="civil">Civil</option>
+          <option value="criminal">Criminal</option>
+          <option value="writ">Writ</option></select
+        ><br />
+
+        <p>Case Number</p>
+        <input
+          type="text"
+          name="case_number"
+          id="case-number"
+          placeholder="case number"
+        /><br />
+
+        <p>Year</p>
+        <input type="text" name="year" id="year" placeholder="year" /><br />
+
+        <p>Enter the CAPTCHA below:</p>
+        <div
+          style="
+            font-size: 1.5em;
+            letter-spacing: 3px;
+            font-weight: bold;
+            background: #e9ecef;
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+          "
+        >
+          {{ captcha }}
+        </div>
+        <br />
+        <input
+          type="text"
+          name="captcha"
+          id="captcha"
+          placeholder="Enter CAPTCHA"
+          required
+        /><br />
+
+        <input type="submit" value="Search" id="search-button" /><br />
+
+        {% if messages %}
+        <ul class="message-list">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </form>
+    </div>
+  </body>
+</html>
